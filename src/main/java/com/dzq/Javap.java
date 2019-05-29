@@ -26,6 +26,7 @@ public class Javap {
 
             }
 
+            classInfo.setConstantInfos(constantInfoArray);
 
 
 

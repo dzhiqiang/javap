@@ -1,6 +1,7 @@
 package com.dzq.constantpool;
 
 import com.dzq.ConstantInfo;
+import com.dzq.U2;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,7 +16,8 @@ public class ConstantInterfaceMethodrefInfo extends ConstantInfo {
     }
     @Override
     public void analysis(InputStream in) throws IOException {
-
+        this.classInfoIndex = U2.byteToInt(in);
+        this.nameAndTypeIndex = U2.byteToInt(in);
     }
 
     public int getClassInfoIndex() {

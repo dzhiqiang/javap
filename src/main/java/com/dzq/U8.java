@@ -11,5 +11,10 @@ public class U8 {
         in.read(bytes, 0, bytes.length);
         return ByteUtil.byte8Double(bytes);
     }
+    public static long byteToLong(InputStream in) throws IOException {
+        byte[] bytes = new byte[8];
+        in.read(bytes, 0, bytes.length);
+        return ByteUtil.byte8Long(bytes);
+    }
 
 }

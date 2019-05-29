@@ -1,20 +1,30 @@
 package com.dzq.constantpool;
 
 import com.dzq.ConstantInfo;
+import com.dzq.U2;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+
 
 public class ConstantStringInfo extends ConstantInfo {
 
-    private String value;
+    private int index;
 
     public ConstantStringInfo(int tag) {
         super(tag);
     }
-
-    public String getValue() {
-        return value;
+    @Override
+    public void analysis(InputStream in) throws IOException {
+        this.index = U2.byteToInt(in);
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

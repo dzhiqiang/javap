@@ -44,8 +44,10 @@ public class ClassInfo {
 
     @Override
     public String toString() {
+
         return "minorVersion=" + minorVersion + "\r\n" +
                 "majorVersion=" + majorVersion + "\r\n"+
-                "constantPoolCount=" + constantPoolCount + "\r\n";
+                "constantPoolCount=" + constantPoolCount + "\r\n"
+                ;
     }
 }

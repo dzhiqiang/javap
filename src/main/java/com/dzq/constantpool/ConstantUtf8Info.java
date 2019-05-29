@@ -1,6 +1,10 @@
 package com.dzq.constantpool;
 
 import com.dzq.ConstantInfo;
+import com.dzq.U2;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ConstantUtf8Info extends ConstantInfo {
 
@@ -9,6 +13,13 @@ public class ConstantUtf8Info extends ConstantInfo {
 
     public ConstantUtf8Info(int tag) {
         super(tag);
+    }
+    @Override
+    public void analysis(InputStream in) throws IOException {
+        this.length = U2.byteToInt(in);
+        byte[] bytes = new byte[length];
+        in.read(bytes, 0, length);
+        this.value = new String(bytes, 0, length);
     }
 
     public int getLength() {
