@@ -28,7 +28,7 @@ public class Javap {
 
             classInfo.setConstantInfos(constantInfoArray);
 
-
+            analysisAccessFlags(classInfo, in);
 
 
         }finally {
@@ -40,6 +40,29 @@ public class Javap {
         System.out.println(classInfo);
 
 
+
+    }
+
+    private static void analysisAccessFlags(ClassInfo classInfo, InputStream in) throws IOException {
+
+        int accessFlags = U2.byteToInt(in);
+
+        //isPublic 0
+        classInfo.setPublic(BitUtil.isOne(accessFlags, 0));
+        //isFinal 4
+        classInfo.setFinal(BitUtil.isOne(accessFlags, 4));
+        //isSuper
+        classInfo.setSuper(BitUtil.isOne(accessFlags, 5));
+        //isInterface
+        classInfo.setInterface(BitUtil.isOne(accessFlags, 9));
+        //isAbstract
+        classInfo.setAbstract(BitUtil.isOne(accessFlags, 10));
+        //isSynthetic
+        classInfo.setSynthetic(BitUtil.isOne(accessFlags, 12));
+        //isAnnotation
+        classInfo.setAnnotation(BitUtil.isOne(accessFlags, 13));
+        //isEnum
+        classInfo.setAnnotation(BitUtil.isOne(accessFlags, 14));
 
     }
 
