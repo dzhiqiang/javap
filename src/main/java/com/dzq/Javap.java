@@ -30,6 +30,16 @@ public class Javap {
 
             analysisAccessFlags(classInfo, in);
 
+            classInfo.setClassIndex(U2.byteToInt(in));
+            classInfo.setSupIndex(U2.byteToInt(in));
+            classInfo.setInterfaceLength(U2.byteToInt(in));
+            int[] interface
+            if (classInfo.getInterfaceLength() > 0) {
+
+
+
+            }
+
 
         }finally {
             if (in != null) {

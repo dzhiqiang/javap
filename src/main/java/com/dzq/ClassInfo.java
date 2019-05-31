@@ -26,6 +26,46 @@ public class ClassInfo {
 
     private boolean isEnum;
 
+    private int classIndex;
+
+    private int supIndex;
+
+    private int interfaceLength;
+
+    private int[] interfaceIndex;
+
+    public int[] getInterfaceIndex() {
+        return interfaceIndex;
+    }
+
+    public void setInterfaceIndex(int[] interfaceIndex) {
+        this.interfaceIndex = interfaceIndex;
+    }
+
+    public int getClassIndex() {
+        return classIndex;
+    }
+
+    public void setClassIndex(int classIndex) {
+        this.classIndex = classIndex;
+    }
+
+    public int getSupIndex() {
+        return supIndex;
+    }
+
+    public void setSupIndex(int supIndex) {
+        this.supIndex = supIndex;
+    }
+
+    public int getInterfaceLength() {
+        return interfaceLength;
+    }
+
+    public void setInterfaceLength(int interfaceLength) {
+        this.interfaceLength = interfaceLength;
+    }
+
     public int getMinorVersion() {
         return minorVersion;
     }
