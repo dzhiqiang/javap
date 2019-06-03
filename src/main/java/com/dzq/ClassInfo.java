@@ -34,6 +34,46 @@ public class ClassInfo {
 
     private int[] interfaceIndex;
 
+    private int fieldsCount;
+
+    private FieldInfo[] fieldInfoArray;
+
+    private int methodsCount;
+
+    private int attributesCount;
+
+    public FieldInfo[] getFieldInfoArray() {
+        return fieldInfoArray;
+    }
+
+    public void setFieldInfoArray(FieldInfo[] fieldInfoArray) {
+        this.fieldInfoArray = fieldInfoArray;
+    }
+
+    public int getFieldsCount() {
+        return fieldsCount;
+    }
+
+    public void setFieldsCount(int fieldsCount) {
+        this.fieldsCount = fieldsCount;
+    }
+
+    public int getMethodsCount() {
+        return methodsCount;
+    }
+
+    public void setMethodsCount(int methodsCount) {
+        this.methodsCount = methodsCount;
+    }
+
+    public int getAttributesCount() {
+        return attributesCount;
+    }
+
+    public void setAttributesCount(int attributesCount) {
+        this.attributesCount = attributesCount;
+    }
+
     public int[] getInterfaceIndex() {
         return interfaceIndex;
     }
