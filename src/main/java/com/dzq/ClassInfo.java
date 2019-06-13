@@ -1,5 +1,8 @@
 package com.dzq;
 
+import com.dzq.attr.AttrInfo;
+import org.w3c.dom.Attr;
+
 public class ClassInfo {
 
     private int minorVersion;
@@ -40,7 +43,27 @@ public class ClassInfo {
 
     private int methodsCount;
 
+    private MethodInfo[] methodInfoArray;
+
     private int attributesCount;
+
+    private AttrInfo[] attrInfoArray;
+
+    public MethodInfo[] getMethodInfoArray() {
+        return methodInfoArray;
+    }
+
+    public void setMethodInfoArray(MethodInfo[] methodInfoArray) {
+        this.methodInfoArray = methodInfoArray;
+    }
+
+    public AttrInfo[] getAttrInfoArray() {
+        return attrInfoArray;
+    }
+
+    public void setAttrInfoArray(AttrInfo[] attrInfoArray) {
+        this.attrInfoArray = attrInfoArray;
+    }
 
     public FieldInfo[] getFieldInfoArray() {
         return fieldInfoArray;

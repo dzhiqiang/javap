@@ -1,5 +1,7 @@
 package com.dzq;
 
+import com.dzq.attr.AttrInfo;
+
 public class FieldInfo {
 
     private boolean isPublic;

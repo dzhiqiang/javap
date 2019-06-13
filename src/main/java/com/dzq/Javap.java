@@ -1,5 +1,9 @@
 package com.dzq;
 
+import com.dzq.attr.AttrInfo;
+import com.dzq.attr.AttrInfoFactory;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 import java.io.*;
 
 public class Javap {
@@ -46,21 +50,41 @@ public class Javap {
             if (classInfo.getFieldsCount() > 0) {
                 FieldInfo[] fieldInfoArray = new FieldInfo[classInfo.getFieldsCount() - 1];
                 for (int i = 0; i < classInfo.getFieldsCount(); i++) {
-
                     FieldInfo fieldInfo = new FieldInfo();
                     analysisFieldAccessFlags(fieldInfo, in);
                     fieldInfo.setNameIndex(U2.byteToInt(in));
                     fieldInfo.setDescIndex(U2.byteToInt(in));
-                        fieldInfo.setAttrCount(U2.byteToInt(in));
-                        if (fieldInfo.getAttrCount() > 0) {
-                            AttrInfo[] attrInfoArray = new AttrInfo[fieldInfo.getAttrCount()];
-
+                    fieldInfo.setAttrCount(U2.byteToInt(in));
+                    if (fieldInfo.getAttrCount() > 0) {
+                        fieldInfo.setAttrInfoArray(AttrInfoUtil.analysisAttrInfo(fieldInfo.getAttrCount(), classInfo, in));
                     }
                 }
+                classInfo.setFieldInfoArray(fieldInfoArray);
             }
 
+            classInfo.setMethodsCount(U2.byteToInt(in));
 
+            if (classInfo.getMethodsCount() > 0) {
+                MethodInfo[] methodInfoArray = new MethodInfo[classInfo.getMethodsCount()];
+                for (int i = 0; i < classInfo.getMethodsCount(); i++) {
+                    MethodInfo methodInfo = new MethodInfo();
+                    analysisMethodAccessFlags(methodInfo, in);
+                    methodInfo.setNameIndex(U2.byteToInt(in));
+                    methodInfo.setDescIndex(U2.byteToInt(in));
+                    methodInfo.setAttrCount(U2.byteToInt(in));
+                    if (methodInfo.getAttrCount() > 0) {
+                        methodInfo.setAttrInfoArray(AttrInfoUtil.analysisAttrInfo(methodInfo.getAttrCount(), classInfo, in));
+                    }
+                    methodInfoArray[i] = methodInfo;
+                }
+                classInfo.setMethodInfoArray(methodInfoArray);
+            }
+            //属性解析
+            classInfo.setAttributesCount(U2.byteToInt(in));
 
+            if (classInfo.getAttributesCount() > 0) {
+                classInfo.setAttrInfoArray(AttrInfoUtil.analysisAttrInfo(classInfo.getAttributesCount(), classInfo, in));
+            }
 
         }finally {
             if (in != null) {
@@ -71,6 +95,24 @@ public class Javap {
         System.out.println(classInfo);
 
 
+
+    }
+
+
+    private static void analysisMethodAccessFlags(MethodInfo methodInfo, InputStream in) throws IOException {
+        int accessFlags = U2.byteToInt(in);
+        methodInfo.setPublic(BitUtil.isOne(accessFlags, 0));
+        methodInfo.setPrivate(BitUtil.isOne(accessFlags, 1));
+        methodInfo.setProtected(BitUtil.isOne(accessFlags, 2));
+        methodInfo.setStatic(BitUtil.isOne(accessFlags, 3));
+        methodInfo.setFinal(BitUtil.isOne(accessFlags, 4));
+        methodInfo.setSynchronized(BitUtil.isOne(accessFlags, 5));
+        methodInfo.setBridge(BitUtil.isOne(accessFlags, 6));
+        methodInfo.setVarargs(BitUtil.isOne(accessFlags, 7));
+        methodInfo.setNative(BitUtil.isOne(accessFlags, 8));
+        methodInfo.setAbstract(BitUtil.isOne(accessFlags, 10));
+        methodInfo.setStrictfp(BitUtil.isOne(accessFlags, 11));
+        methodInfo.setSynthetic(BitUtil.isOne(accessFlags, 12));
 
     }
 
