@@ -20,6 +20,16 @@ public class AttrInfoFactory {
         if ("Code".equals(attrName)) {
             return new CodeAttrInfo(attrNameIndex, attrLength, attrName);
         }
+        if ("LineNumberTable".equals(attrName)) {
+            return new LineNumberTableAttrInfo(attrNameIndex, attrLength, attrName);
+        }
+
+        if ("LocalVariableTable".equals(attrName)) {
+            return new LocalVariableTableAttrInfo(attrNameIndex, attrLength, attrName);
+        }
+        if ("SourceFile".equals(attrName)) {
+            return new SourceFileAttrInfo(attrNameIndex, attrLength, attrName);
+        }
         return null;
     }
 

@@ -45,7 +45,7 @@ public class Javap {
                 }
                 classInfo.setInterfaceIndex(interfaceArray);
             }
-            //属性集合
+            //字段表
             classInfo.setFieldsCount(U2.byteToInt(in));
             if (classInfo.getFieldsCount() > 0) {
                 FieldInfo[] fieldInfoArray = new FieldInfo[classInfo.getFieldsCount() - 1];
@@ -61,7 +61,7 @@ public class Javap {
                 }
                 classInfo.setFieldInfoArray(fieldInfoArray);
             }
-
+            //方法表
             classInfo.setMethodsCount(U2.byteToInt(in));
 
             if (classInfo.getMethodsCount() > 0) {
@@ -79,7 +79,7 @@ public class Javap {
                 }
                 classInfo.setMethodInfoArray(methodInfoArray);
             }
-            //属性解析
+            //属性表
             classInfo.setAttributesCount(U2.byteToInt(in));
 
             if (classInfo.getAttributesCount() > 0) {
@@ -93,8 +93,6 @@ public class Javap {
         }
 
         System.out.println(classInfo);
-
-
 
     }
 

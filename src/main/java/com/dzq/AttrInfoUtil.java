@@ -10,7 +10,7 @@ public class AttrInfoUtil {
 
     public static AttrInfo[] analysisAttrInfo(int length, ClassInfo classInfo, InputStream in) throws IOException {
         AttrInfo[] attrInfoArray = new AttrInfo[length];
-        for (int i = 0; i < classInfo.getAttributesCount(); i++) {
+        for (int i = 0; i < length; i++) {
             attrInfoArray[i] = itemArrayInfo(classInfo, in);
         }
         return attrInfoArray;

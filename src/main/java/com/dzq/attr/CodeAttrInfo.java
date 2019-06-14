@@ -33,12 +33,12 @@ public class CodeAttrInfo extends AttrInfo{
         if (codeLength > 0) {
             int[] codeArray = new int[codeLength];
             for (int i = 0; i < codeLength; i++) {
-                code[i] = U1.byteToInt(in);
+                codeArray[i] = U1.byteToInt(in);
             }
             this.code = codeArray;
         }
         this.exceptionTableLength = U2.byteToInt(in);
-        if (exceptionTableLength > 0) {
+        if (this.exceptionTableLength > 0) {
             ExceptionTable[] tableArray = new ExceptionTable[exceptionTableLength];
             for (int i = 0; i < exceptionTableLength; i++) {
                 ExceptionTable etable = new ExceptionTable();
@@ -48,11 +48,13 @@ public class CodeAttrInfo extends AttrInfo{
                 etable.setCatchType(U2.byteToInt(in));
                 tableArray[i] = etable;
             }
-            exceptionTableArray = tableArray;
+            this.exceptionTableArray = tableArray;
         }
 
         this.attrLength = U2.byteToInt(in);
-        this.attrInfoArray = AttrInfoUtil.analysisAttrInfo(attrLength, classInfo, in);
+        if (this.attrLength > 0) {
+            this.attrInfoArray = AttrInfoUtil.analysisAttrInfo(this.attrLength, classInfo, in);
+        }
 
     }
 
